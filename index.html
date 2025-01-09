@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>General Knowledge Quiz</title>
     <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts/script.js" defer></script>
 </head>
 <body>
     <header>
@@ -14,7 +15,7 @@
         <!-- Welcome Section -->
         <section id="welcome">
             <p>Test your knowledge with our interactive quiz!</p>
-            <button id="startQuiz">Start Quiz</button>
+            <button id="startQuiz" aria-label="Start the quiz">Start Quiz</button>
         </section>
 
         <!-- How To Section -->
@@ -35,27 +36,20 @@
                 <h2 id="questionText"></h2>
                 <div id="optionsContainer"></div>
             </div>
-            <button id="prevButton">Previous</button>
-            <button id="nextButton">Next</button>
+            <button id="prevButton" aria-label="Go to the previous question">Previous</button>
+            <button id="nextButton" aria-label="Go to the next question">Next</button>
+        </section>
+
+        <!-- Results Section -->
+        <section id="resultsSection" hidden>
+            <h2>Quiz Results</h2>
+            <p id="score"></p>
+            <ul id="feedbackList"></ul>
+            <button id="retryQuiz" aria-label="Retry the quiz">Retry Quiz</button>
         </section>
     </main>
     <footer>
         <p>&copy; 2025 General Knowledge Quiz</p>
     </footer>
-
-    <script src="scripts/script.js"></script>
 </body>
 </html>
-
-
-<script>
-    document.getElementById("startQuiz").addEventListener("click", function() {
-        document.getElementById("welcome").hidden = true;
-        document.getElementById("howTo").hidden = false;
-    });
-
-    document.getElementById("startGame").addEventListener("click", function() {
-        document.getElementById("howTo").hidden = true;
-        document.getElementById("quizSection").hidden = false;
-    });
-</script>

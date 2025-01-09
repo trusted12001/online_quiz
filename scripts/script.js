@@ -1,5 +1,3 @@
-// scripts/script.js
-
 // Sample Questions
 const questions = [
     {
@@ -28,6 +26,7 @@ const questionText = document.getElementById("questionText");
 const optionsContainer = document.getElementById("optionsContainer");
 const nextButton = document.getElementById("nextButton");
 const prevButton = document.getElementById("prevButton");
+const retryButton = document.getElementById("retryQuiz");
 
 // Initialize Quiz
 function loadQuestion(index) {
@@ -40,14 +39,18 @@ function loadQuestion(index) {
         button.textContent = option;
         button.className = "option-button";
         button.onclick = () => saveResponse(index, i);
+
+        // Highlight selected option
         if (userResponses[index] === i) {
             button.classList.add("selected");
         }
+
         optionsContainer.appendChild(button);
     });
 
+    // Manage navigation button visibility
     prevButton.style.display = index === 0 ? "none" : "inline-block";
-    nextButton.style.display = index === questions.length - 1 ? "none" : "inline-block";
+    nextButton.textContent = index === questions.length - 1 ? "Submit" : "Next";
 }
 
 function saveResponse(questionIndex, optionIndex) {
@@ -55,20 +58,51 @@ function saveResponse(questionIndex, optionIndex) {
     loadQuestion(questionIndex); // Refresh UI
 }
 
-function calculateScore() {
+function showResults() {
+    document.getElementById("quizSection").hidden = true;
+    document.getElementById("resultsSection").hidden = false;
+
+    const scoreElement = document.getElementById("score");
+    const feedbackList = document.getElementById("feedbackList");
+
     let score = 0;
-    userResponses.forEach((response, i) => {
-        if (response === questions[i].correct) {
+    feedbackList.innerHTML = "";
+
+    userResponses.forEach((response, index) => {
+        const question = questions[index];
+        const feedbackItem = document.createElement("li");
+
+        if (response === question.correct) {
             score++;
+            feedbackItem.textContent = `Question ${index + 1}: Correct!`;
+        } else {
+            feedbackItem.textContent = `Question ${index + 1}: Incorrect. The correct answer was "${
+                question.options[question.correct]
+            }".`;
         }
+
+        feedbackList.appendChild(feedbackItem);
     });
-    alert(`You scored ${score} out of ${questions.length}!`);
+
+    scoreElement.textContent = `You scored ${score} out of ${questions.length}!`;
+}
+
+function resetQuiz() {
+    currentQuestionIndex = 0;
+    userResponses.fill(null);
+
+    document.getElementById("resultsSection").hidden = true;
+    document.getElementById("welcome").hidden = false;
 }
 
 // Event Listeners
 nextButton.addEventListener("click", () => {
-    currentQuestionIndex++;
-    loadQuestion(currentQuestionIndex);
+    if (currentQuestionIndex === questions.length - 1) {
+        showResults();
+    } else {
+        currentQuestionIndex++;
+        loadQuestion(currentQuestionIndex);
+    }
 });
 
 prevButton.addEventListener("click", () => {
@@ -76,5 +110,23 @@ prevButton.addEventListener("click", () => {
     loadQuestion(currentQuestionIndex);
 });
 
-// Start Quiz
+retryButton.addEventListener("click", resetQuiz);
+
+// Start the Quiz
 loadQuestion(currentQuestionIndex);
+
+
+
+// Start Quiz button
+document.getElementById("startQuiz").addEventListener("click", function () {
+    document.getElementById("welcome").hidden = true;
+    document.getElementById("howTo").hidden = false;
+});
+
+
+// Start Game button
+document.getElementById("startGame").addEventListener("click", function () {
+    document.getElementById("howTo").hidden = true;
+    document.getElementById("quizSection").hidden = false;
+});
+

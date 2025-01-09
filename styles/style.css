@@ -58,22 +58,7 @@ footer {
     width: 100%;
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
-    section {
-        padding: 0.8em;
-    }
-
-    button {
-        font-size: 0.9rem;
-        padding: 8px 16px;
-    }
-}
-
-
-
-
-
+/* Option Buttons */
 .option-button {
     display: block;
     margin: 10px auto;
@@ -99,7 +84,6 @@ footer {
     border-color: #0056b3;
 }
 
-
 /* Navigation Buttons */
 #prevButton, #nextButton {
     margin: 10px;
@@ -108,3 +92,49 @@ footer {
     cursor: pointer;
 }
 
+/* Media Queries for Smaller Devices */
+@media (max-width: 768px) {
+    section {
+        padding: 0.8em;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    section {
+        padding: 1em;
+    }
+
+    .option-button {
+        font-size: 0.9rem;
+        width: 90%;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
+
+/* Results Section Styles */
+#resultsSection {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#feedbackList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#feedbackList li {
+    margin-bottom: 10px;
+    padding: 8px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
