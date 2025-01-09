@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Knowledge Quiz</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the General Knowledge Quiz</h1>
+    </header>
+    <main>
+        <!-- Welcome Section -->
+        <section id="welcome">
+            <p>Test your knowledge with our interactive quiz!</p>
+            <button id="startQuiz">Start Quiz</button>
+        </section>
+
+        <!-- How To Section -->
+        <section id="howTo" hidden>
+            <h2>How to Play</h2>
+            <ul>
+                <li>Click "Start Quiz" to begin.</li>
+                <li>Answer each question by selecting the correct option or typing your response.</li>
+                <li>Use "Next" and "Previous" buttons to navigate.</li>
+                <li>Click "Submit" at the end to see your score and feedback.</li>
+            </ul>
+            <button id="startGame">Start the Game</button>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quizSection" hidden>
+            <div id="questionContainer">
+                <h2 id="questionText"></h2>
+                <div id="optionsContainer"></div>
+            </div>
+            <button id="prevButton">Previous</button>
+            <button id="nextButton">Next</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 General Knowledge Quiz</p>
+    </footer>
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>
+
+
+<script>
+    document.getElementById("startQuiz").addEventListener("click", function() {
+        document.getElementById("welcome").hidden = true;
+        document.getElementById("howTo").hidden = false;
+    });
+
+    document.getElementById("startGame").addEventListener("click", function() {
+        document.getElementById("howTo").hidden = true;
+        document.getElementById("quizSection").hidden = false;
+    });
+</script>
